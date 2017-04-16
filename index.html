@@ -34,7 +34,7 @@
    <div style="padding-top: 10px;">
     <a href="https://guides.gradle.org"><img src="http://guides.gradle.org/gradle-guides.svg" alt=""></a>
    </div> 
-   <h1>Building Groovy Libraries <span class="image"><a class="image" href="https://travis-ci.org/gradle-guides/building-groovy-libraries"><img src="https://travis-ci.org/gradle-guides/building-groovy-libraries.svg?branch=master" alt="Build Status"></a></span></h1> 
+   <h1>Building Groovy Libraries</h1> 
    <div id="toc" class="toc2"> 
     <div id="toctitle">
      Table of Contents
@@ -42,48 +42,320 @@
     <ul class="sectlevel1"> 
      <li><a href="#what_you_ll_build">What you’ll build</a></li> 
      <li><a href="#what_you_ll_need">What you’ll need</a></li> 
-     <li><a href="#step_1">Step 1</a></li> 
-     <li><a href="#step_2">Step 2</a></li> 
-     <li><a href="#step_n">Step N</a></li> 
+     <li><a href="#check_the_user_manual">Check the user manual</a></li> 
+     <li><a href="#run_the_init_task">Run the init task</a></li> 
+     <li><a href="#review_the_generated_project_files">Review the generated project files</a></li> 
+     <li><a href="#execute_the_build">Execute the build</a></li> 
      <li><a href="#summary">Summary</a></li> 
     </ul> 
    </div> 
   </div> 
   <div id="content"> 
+   <div id="preamble"> 
+    <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>This guide demonstrates how to create a <a href="http://groovy-lang.org/">Groovy</a> library in the standard form using Gradle’s Build Init plugin.</p> 
+     </div> 
+    </div> 
+   </div> 
    <div class="sect1"> 
     <h2 id="what_you_ll_build"><a class="anchor" href="#what_you_ll_build"></a>What you’ll build</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>You’ll generate a Groovy library with the standard layout.</p> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
     <h2 id="what_you_ll_need"><a class="anchor" href="#what_you_ll_need"></a>What you’ll need</h2> 
     <div class="sectionbody"> 
+     <div class="ulist"> 
+      <ul> 
+       <li> <p>About NN minutes</p> </li> 
+       <li> <p>A text editor</p> </li> 
+       <li> <p>A command prompt</p> </li> 
+       <li> <p>The Java Development Kit (JDK), version 1.7 or higher</p> </li> 
+       <li> <p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 3.5 or better</p> </li> 
+      </ul> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
-    <h2 id="step_1"><a class="anchor" href="#step_1"></a>Step 1</h2> 
+    <h2 id="check_the_user_manual"><a class="anchor" href="#check_the_user_manual"></a>Check the user manual</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>Gradle comes with a built-in plugin called the Build Init plugin. It is documented in the <a href="https://docs.gradle.org/current/userguide/build_init_plugin.html">Gradle User Manual</a>. The plugin has one task, called <code>init</code>, that generates the project. The <code>init</code> task calls the (also built-in) <code>wrapper</code> task to create a Gradle wrapper script, <code>gradlew</code>.</p> 
+     </div> 
+     <div class="paragraph"> 
+      <p>The first step is to create a folder for the new project and change directory into it.</p> 
+     </div> 
+     <div class="listingblock"> 
+      <div class="content"> 
+       <pre>$ mkdir groovy-demo
+$ cd groovy-demo</pre> 
+      </div> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
-    <h2 id="step_2"><a class="anchor" href="#step_2"></a>Step 2</h2> 
+    <h2 id="run_the_init_task"><a class="anchor" href="#run_the_init_task"></a>Run the init task</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>From inside the new project directory, run the <code>init</code> task with the <code>groovy-library</code> argument.</p> 
+     </div> 
+     <div class="listingblock"> 
+      <div class="content"> 
+       <pre>$ gradle init --type groovy-library
+:wrapper
+:init
+
+BUILD SUCCESSFUL
+
+Total time: 3.521 secs</pre> 
+      </div> 
+     </div> 
+     <div class="paragraph"> 
+      <p>The <code>init</code> task runs the <code>wrapper</code> task first, which generates the <code>gradlew</code> and <code>gradlew.bat</code> wrapper scripts. Then it creates the new project with the following structure:</p> 
+     </div> 
+     <div class="listingblock"> 
+      <div class="content"> 
+       <pre>├── build.gradle
+├── gradle
+│&nbsp;&nbsp; └── wrapper  <i class="conum" data-value="1"></i><b>(1)</b>
+│&nbsp;&nbsp;     ├── gradle-wrapper.jar
+│&nbsp;&nbsp;     └── gradle-wrapper.properties
+├── gradlew
+├── gradlew.bat
+├── settings.gradle
+└── src
+    ├── main
+    │&nbsp;&nbsp; └── groovy  <i class="conum" data-value="2"></i><b>(2)</b>
+    │&nbsp;&nbsp;     └── Library.groovy
+    └── test
+        └── groovy <i class="conum" data-value="3"></i><b>(3)</b>
+            └── LibraryTest.groovy</pre> 
+      </div> 
+     </div> 
+     <div class="colist arabic"> 
+      <table> 
+       <tbody>
+        <tr> 
+         <td><i class="conum" data-value="1"></i><b>1</b></td> 
+         <td>Generated folder for wrapper files</td> 
+        </tr> 
+        <tr> 
+         <td><i class="conum" data-value="2"></i><b>2</b></td> 
+         <td>Default Groovy source folder</td> 
+        </tr> 
+        <tr> 
+         <td><i class="conum" data-value="3"></i><b>3</b></td> 
+         <td>Default Groovy test folder</td> 
+        </tr> 
+       </tbody>
+      </table> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
-    <h2 id="step_n"><a class="anchor" href="#step_n"></a>Step N</h2> 
+    <h2 id="review_the_generated_project_files"><a class="anchor" href="#review_the_generated_project_files"></a>Review the generated project files</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>The <code>settings.gradle</code> file is heavily commented, but has only one active line:</p> 
+     </div> 
+     <div class="listingblock"> 
+      <div class="title">
+       Generated settings.gradle
+      </div> 
+      <div class="content"> 
+       <pre class="CodeRay highlight"><code data-lang="groovy">rootProject.name = <span class="string"><span class="delimiter">'</span><span class="content">building-groovy-libraries</span><span class="delimiter">'</span></span> <i class="conum" data-value="1"></i><b>(1)</b></code></pre> 
+      </div> 
+     </div> 
+     <div class="colist arabic"> 
+      <table> 
+       <tbody>
+        <tr> 
+         <td><i class="conum" data-value="1"></i><b>1</b></td> 
+         <td>This assigns the name of the root project.</td> 
+        </tr> 
+       </tbody>
+      </table> 
+     </div> 
+     <div class="paragraph"> 
+      <p>The generated <code>build.gradle</code> file also has many comments. The active portion is reproduced here (note version numbers for the dependencies may be updated in later versions of Gradle):</p> 
+     </div> 
+     <div class="listingblock"> 
+      <div class="title">
+       Generated build.gradle
+      </div> 
+      <div class="content"> 
+       <pre class="CodeRay highlight"><code data-lang="groovy">apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">groovy</span><span class="delimiter">'</span></span>
+
+repositories {
+    jcenter() <i class="conum" data-value="1"></i><b>(1)</b>
+}
+
+dependencies {
+    compile <span class="string"><span class="delimiter">'</span><span class="content">org.codehaus.groovy:groovy-all:2.4.10</span><span class="delimiter">'</span></span> <i class="conum" data-value="2"></i><b>(2)</b>
+
+    testCompile <span class="string"><span class="delimiter">'</span><span class="content">org.spockframework:spock-core:1.0-groovy-2.4</span><span class="delimiter">'</span></span> <i class="conum" data-value="3"></i><b>(3)</b>
+    testCompile <span class="string"><span class="delimiter">'</span><span class="content">junit:junit:4.12</span><span class="delimiter">'</span></span> <i class="conum" data-value="4"></i><b>(4)</b>
+}</code></pre> 
+      </div> 
+     </div> 
+     <div class="colist arabic"> 
+      <table> 
+       <tbody>
+        <tr> 
+         <td><i class="conum" data-value="1"></i><b>1</b></td> 
+         <td>public Bintray Artifactory repository</td> 
+        </tr> 
+        <tr> 
+         <td><i class="conum" data-value="2"></i><b>2</b></td> 
+         <td>Groovy version that this project will include as dependency</td> 
+        </tr> 
+        <tr> 
+         <td><i class="conum" data-value="3"></i><b>3</b></td> 
+         <td>Spock Framework testing library</td> 
+        </tr> 
+        <tr> 
+         <td><i class="conum" data-value="4"></i><b>4</b></td> 
+         <td>JUnit testing library</td> 
+        </tr> 
+       </tbody>
+      </table> 
+     </div> 
+     <div class="paragraph"> 
+      <p>The build file adds the <code>groovy</code> plugin. This is an extension of the <code>java</code> plugins and adds additional tasks for compiling Groovy source code. It also allows for joint compilation of Groovy and Java files if found in the appropriate <code>groovy</code> source folders.</p> 
+     </div> 
+     <div class="paragraph"> 
+      <p>The file <code>src/main/java/App.java</code> is shown here:</p> 
+     </div> 
+     <div class="listingblock"> 
+      <div class="title">
+       Generated src/main/groovy/Library.groovy
+      </div> 
+      <div class="content"> 
+       <pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">Library</span> {
+    <span class="type">boolean</span> someLibraryMethod() {
+        <span class="predefined-constant">true</span>
+    }
+}</code></pre> 
+      </div> 
+     </div> 
+     <div class="paragraph"> 
+      <p>The generated Spock specification, <code>src/test/groovy/LibraryTest.groovy</code> is shown next:</p> 
+     </div> 
+     <div class="listingblock"> 
+      <div class="title">
+       Generated src/test/groovy/LibraryTest.groovy
+      </div> 
+      <div class="content"> 
+       <pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">spock.lang.Specification</span>
+
+<span class="type">class</span> <span class="class">LibraryTest</span> <span class="directive">extends</span> Specification {
+    <span class="keyword">def</span> <span class="string"><span class="delimiter">"</span><span class="content">someLibraryMethod returns true</span><span class="delimiter">"</span></span>() {
+        <span class="key">setup</span>:
+        <span class="keyword">def</span> lib = <span class="keyword">new</span> Library()
+
+        <span class="key">when</span>:
+        <span class="keyword">def</span> result = lib.someLibraryMethod()
+
+        <span class="key">then</span>:
+        result == <span class="predefined-constant">true</span>
+    }
+}</code></pre> 
+      </div> 
+     </div> 
+     <div class="paragraph"> 
+      <p>The generated test class has a single <a href="http://spockframework.org">Spock specification</a>. The test instantiates the <code>Library</code> class, invokes the <code>someLibraryMethod</code> method, and checks that the returned value is `true.</p> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="sect1"> 
+    <h2 id="execute_the_build"><a class="anchor" href="#execute_the_build"></a>Execute the build</h2> 
+    <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>To build the project, run the <code>build</code> command. You can use the regular <code>gradle</code> command, but when a project includes a wrapper script, it is considered good form to use it instead.</p> 
+     </div> 
+     <div class="listingblock"> 
+      <div class="content"> 
+       <pre>$ ./gradlew build
+:compileJava NO-SOURCE
+:compileGroovy
+Download https://jcenter.bintray.com/org/codehaus/groovy/groovy-all/2.4.10/groovy-all-2.4.10.pom
+Download https://jcenter.bintray.com/org/codehaus/groovy/groovy-all/2.4.10/groovy-all-2.4.10.jar
+:processResources NO-SOURCE
+:classes
+:jar
+:assemble
+:compileTestJava NO-SOURCE
+:compileTestGroovy
+Download https://jcenter.bintray.com/org/spockframework/spock-core/1.0-groovy-2.4/spock-core-1.0-groovy-2.4.pom
+Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.pom
+Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.pom
+Download https://jcenter.bintray.com/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom
+Download https://jcenter.bintray.com/org/spockframework/spock-core/1.0-groovy-2.4/spock-core-1.0-groovy-2.4.jar
+Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.jar
+Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+:processTestResources NO-SOURCE
+:testClasses
+:test
+:check
+:build
+
+BUILD SUCCESSFUL
+
+Total time: 9.426 secs</pre> 
+      </div> 
+     </div> 
+     <div class="admonitionblock note"> 
+      <table> 
+       <tbody>
+        <tr> 
+         <td class="icon"> <i class="fa icon-note" title="Note"></i> </td> 
+         <td class="content"> The first time you run the wrapper script, <code>gradlew</code>, there may be a delay while that version of <code>gradle</code> is downloaded and stored locally in your <code>~/.gradle/wrapper/dists</code> folder. </td> 
+        </tr> 
+       </tbody>
+      </table> 
+     </div> 
+     <div class="paragraph"> 
+      <p>The first time you run the build, Gradle will check whether or not you already have the Groovy, Spock Framework and JUnit libraries in your cache under your <code>~/.gradle</code> directory. If not, the libraries will be downloaded and stored there. The next time you run the build, the cached versions will be used. The <code>build</code> task compiles the classes, runs the tests, and generates a test report.</p> 
+     </div> 
+     <div class="paragraph"> 
+      <p>You can view the test report by opening the HTML output file, located at <code>build/reports/tests/test/index.html</code>.</p> 
+     </div> 
+     <div class="paragraph"> 
+      <p>A sample report is shown here:</p> 
+     </div> 
+     <div class="imageblock"> 
+      <div class="content"> 
+       <img src="images/Test-Summary.png" alt="Test Summary"> 
+      </div> 
+     </div> 
+     <div class="paragraph"> 
+      <p>Congratulations, you have just completed the step from creating a Groovy library! You can can now customise this to your own project needs.</p> 
+     </div> 
     </div> 
    </div> 
    <div class="sect1"> 
     <h2 id="summary"><a class="anchor" href="#summary"></a>Summary</h2> 
     <div class="sectionbody"> 
+     <div class="paragraph"> 
+      <p>You now have a new Groovy project that you generated using Gradle’s build init plugin. In the process, you saw:</p> 
+     </div> 
+     <div class="ulist"> 
+      <ul> 
+       <li> <p>How to generate a Groovy library</p> </li> 
+       <li> <p>How the generated build file and sample Groovy files are structured</p> </li> 
+       <li> <p>How to run the build and view the test report</p> </li> 
+      </ul> 
+     </div> 
     </div> 
    </div> 
   </div> 
   <div id="footer"> 
    <div id="footer-text">
-     Last updated 2017-04-10 13:04:04 UTC 
+     Last updated 2017-04-16 20:51:54 UTC 
    </div> 
   </div>  
  </body>
