@@ -5,6 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.3">
+<meta name="author" content="Schalk Cronjé">
 <title>Building Groovy Libraries</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./coderay-asciidoctor.css">
@@ -32,6 +33,9 @@
 </head>
 <body class="article toc2 toc-right">
 <div id="header"><div style="padding-top: 10px;"><a href="https://guides.gradle.org"><img src="http://guides.gradle.org/gradle-guides.svg" alt=""></a></div><h1>Building Groovy Libraries</h1>
+<div class="details">
+<span id="author" class="author">Schalk Cronjé</span><br>
+</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -168,7 +172,7 @@ BUILD SUCCESSFUL</pre>
 <div class="listingblock">
 <div class="title">Generated settings.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">rootProject.name = <span class="string"><span class="delimiter">'</span><span class="content">building-groovy-libraries</span><span class="delimiter">'</span></span> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy">rootProject.name = <span class="string"><span class="delimiter">'</span><span class="content">gradleRunner</span><span class="delimiter">'</span></span> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -351,6 +355,7 @@ The first time you run the wrapper script, <code>gradlew</code>, there may be a 
 :processResources NO-SOURCE
 :classes
 :groovydoc
+[ant:groovydoc] /home/travis/build/gradle-guides/building-groovy-libraries/build/runners/gradleRunner/build/tmp/groovydoc contains source files in the default package, you must specify them as source files not packages.
 
 BUILD SUCCESSFUL</pre>
 </div>
@@ -402,7 +407,7 @@ BUILD SUCCESSFUL</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-05-30 15:34:28 UTC
+Last updated 2017-06-12 19:33:20 UTC
 </div>
 </div>
 </body>
