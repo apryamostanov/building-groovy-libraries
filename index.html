@@ -3,7 +3,7 @@
 <head><link crossorigin href="//assets.gradle.com" rel="preconnect">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400i">
 <link rel="stylesheet" href="https://guides.gradle.org/css/asciidoctor.css">
-<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme.css">
+<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme-4.5.2.css">
 <link rel="apple-touch-icon" sizes="180x180" href="https://guides.gradle.org/icon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-16x16.png" sizes="16x16">
@@ -127,7 +127,7 @@
 <p>The Java Development Kit (JDK), version 1.7 or higher</p>
 </li>
 <li>
-<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.4.1 or better</p>
+<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.5 or better</p>
 </li>
 </ul>
 </div>
@@ -232,16 +232,18 @@ BUILD SUCCESSFUL in 4s
 <div class="listingblock">
 <div class="title">Generated build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">apply <span class="key">plugin</span>: <span class="string"><span class="delimiter">'</span><span class="content">groovy</span><span class="delimiter">'</span></span>
-
-repositories {
-    jcenter() <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="CodeRay highlight"><code data-lang="groovy">plugins {
+    id <span class="string"><span class="delimiter">'</span><span class="content">groovy</span><span class="delimiter">'</span></span>
 }
 
 dependencies {
     compile <span class="string"><span class="delimiter">'</span><span class="content">org.codehaus.groovy:groovy-all:2.4.12</span><span class="delimiter">'</span></span> <i class="conum" data-value="2"></i><b>(2)</b>
 
     testCompile <span class="string"><span class="delimiter">'</span><span class="content">org.spockframework:spock-core:1.0-groovy-2.4</span><span class="delimiter">'</span></span> <i class="conum" data-value="3"></i><b>(3)</b>
+}
+
+repositories {
+    jcenter() <i class="conum" data-value="1"></i><b>(1)</b>
 }</code></pre>
 </div>
 </div>
@@ -331,7 +333,7 @@ dependencies {
 :check
 :build
 
-BUILD SUCCESSFUL in 9s
+BUILD SUCCESSFUL in 10s
 4 actionable tasks: 4 executed</pre>
 </div>
 </div>
@@ -439,10 +441,10 @@ BUILD SUCCESSFUL in 5s
 <div class="ulist">
 <ul>
 <li>
-<p>Read about the <a href="https://docs.gradle.org/4.4.1/userguide/groovy_plugin.html">Groovy Plugin</a></p>
+<p>Read about the <a href="https://docs.gradle.org/4.5/userguide/groovy_plugin.html">Groovy Plugin</a></p>
 </li>
 <li>
-<p>Get to know the configurations for the <a href="https://docs.gradle.org/4.4.1/dsl/org.gradle.api.tasks.compile.GroovyCompile.html">GroovyCompile</a> and <a href="https://docs.gradle.org/4.4.1/dsl/org.gradle.api.tasks.javadoc.Groovydoc.html">Groovydoc</a> task types.</p>
+<p>Get to know the configurations for the <a href="https://docs.gradle.org/4.5/dsl/org.gradle.api.tasks.compile.GroovyCompile.html">GroovyCompile</a> and <a href="https://docs.gradle.org/4.5/dsl/org.gradle.api.tasks.javadoc.Groovydoc.html">Groovydoc</a> task types.</p>
 </li>
 </ul>
 </div>
