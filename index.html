@@ -12,6 +12,7 @@
 <link rel="shortcut icon" href="https://guides.gradle.org/icon/favicon.ico">
 <script defer src="https://guides.gradle.org/js/guides.js"></script>
 <script defer src="https://guides.gradle.org/js/set-time-to-complete-text.js"></script>
+<script async src="https://guides.gradle.org/js/autotrack.js"></script>
 
 <meta charset="utf-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
@@ -75,7 +76,7 @@
                     <a target="_top" class="site-header__navigation-link" href="https://gradle.org/training/" itemprop="url">Training</a>
                 </li>
                 <li class="site-header__navigation-item" itemprop="name">
-                    <a target="_top" class="site-header__navigation-link" href="https://gradle.com/enterprise" itemprop="url">Enterprise</a>
+                    <a target="_top" class="site-header__navigation-link" href="https://gradle.com/enterprise" itemprop="url">Try Gradle Enterprise</a>
                 </li>
             </ul>
         </div>
@@ -127,7 +128,7 @@
 <p>The Java Development Kit (JDK), version 1.7 or higher</p>
 </li>
 <li>
-<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.5 or better</p>
+<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.6 or better</p>
 </li>
 </ul>
 </div>
@@ -162,7 +163,7 @@ $ cd building-groovy-libraries</pre>
 :wrapper
 :init
 
-BUILD SUCCESSFUL in 1m 37s
+BUILD SUCCESSFUL in 4s
 2 actionable tasks: 2 executed</pre>
 </div>
 </div>
@@ -237,7 +238,7 @@ BUILD SUCCESSFUL in 1m 37s
 }
 
 dependencies {
-    compile <span class="string"><span class="delimiter">'</span><span class="content">org.codehaus.groovy:groovy-all:2.4.12</span><span class="delimiter">'</span></span> <i class="conum" data-value="2"></i><b>(2)</b>
+    compile <span class="string"><span class="delimiter">'</span><span class="content">org.codehaus.groovy:groovy-all:2.4.13</span><span class="delimiter">'</span></span> <i class="conum" data-value="2"></i><b>(2)</b>
 
     testCompile <span class="string"><span class="delimiter">'</span><span class="content">org.spockframework:spock-core:1.0-groovy-2.4</span><span class="delimiter">'</span></span> <i class="conum" data-value="3"></i><b>(3)</b>
 }
@@ -333,7 +334,7 @@ repositories {
 :check
 :build
 
-BUILD SUCCESSFUL in 3m 45s
+BUILD SUCCESSFUL in 8s
 4 actionable tasks: 4 executed</pre>
 </div>
 </div>
@@ -402,7 +403,7 @@ The first time you run the wrapper script, <code>gradlew</code>, there may be a 
 :groovydoc
 [ant:groovydoc] /home/travis/build/gradle-guides/building-groovy-libraries/build/runners/gradleRunner/build/tmp/groovydoc contains source files in the default package, you must specify them as source files not packages.
 
-BUILD SUCCESSFUL in 1m 8s
+BUILD SUCCESSFUL in 5s
 2 actionable tasks: 2 executed</pre>
 </div>
 </div>
@@ -441,10 +442,10 @@ BUILD SUCCESSFUL in 1m 8s
 <div class="ulist">
 <ul>
 <li>
-<p>Read about the <a href="https://docs.gradle.org/4.5/userguide/groovy_plugin.html">Groovy Plugin</a></p>
+<p>Read about the <a href="https://docs.gradle.org/4.6/userguide/groovy_plugin.html">Groovy Plugin</a></p>
 </li>
 <li>
-<p>Get to know the configurations for the <a href="https://docs.gradle.org/4.5/dsl/org.gradle.api.tasks.compile.GroovyCompile.html">GroovyCompile</a> and <a href="https://docs.gradle.org/4.5/dsl/org.gradle.api.tasks.javadoc.Groovydoc.html">Groovydoc</a> task types.</p>
+<p>Get to know the configurations for the <a href="https://docs.gradle.org/4.6/dsl/org.gradle.api.tasks.compile.GroovyCompile.html">GroovyCompile</a> and <a href="https://docs.gradle.org/4.6/dsl/org.gradle.api.tasks.javadoc.Groovydoc.html">Groovydoc</a> task types.</p>
 </li>
 </ul>
 </div>
