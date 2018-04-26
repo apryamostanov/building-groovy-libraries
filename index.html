@@ -3,14 +3,14 @@
 <head><link crossorigin href="//assets.gradle.com" rel="preconnect">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400i">
 <link rel="stylesheet" href="https://guides.gradle.org/css/asciidoctor.css">
-<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme-4.5.2.css">
+<link rel="stylesheet" href="https://guides.gradle.org/css/docs-blue-theme-4.7.css">
 <link rel="apple-touch-icon" sizes="180x180" href="https://guides.gradle.org/icon/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="https://guides.gradle.org/icon/favicon-16x16.png" sizes="16x16">
 <link rel="manifest" href="https://guides.gradle.org/icon/manifest.json">
 <link rel="mask-icon" href="https://guides.gradle.org/icon/safari-pinned-tab.svg" color="#5bbad5">
 <link rel="shortcut icon" href="https://guides.gradle.org/icon/favicon.ico">
-<script defer src="https://guides.gradle.org/js/guides.js"></script>
+<script defer src="https://guides.gradle.org/js/guides-4.7.js"></script>
 <script defer src="https://guides.gradle.org/js/set-time-to-complete-text.js"></script>
 <script async src="https://guides.gradle.org/js/autotrack.js"></script>
 
@@ -21,7 +21,6 @@
 <meta name="author" content="Schalk Cronjé">
 <title>Building Groovy Libraries</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<link rel="stylesheet" href="./coderay-asciidoctor.css">
 </head>
 <body class="article">
 <header class="site-layout__header site-header" itemscope="itemscope" itemtype="https://schema.org/WPHeader">
@@ -128,7 +127,7 @@
 <p>The Java Development Kit (JDK), version 1.7 or higher</p>
 </li>
 <li>
-<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.6 or better</p>
+<p>A <a href="https://gradle.org/install">Gradle distribution</a>, version 4.7 or better</p>
 </li>
 </ul>
 </div>
@@ -160,8 +159,8 @@ $ cd building-groovy-libraries</pre>
 <div class="listingblock">
 <div class="content">
 <pre>$ gradle init --type groovy-library
-:wrapper
-:init
+&gt; Task :wrapper
+&gt; Task :init
 
 BUILD SUCCESSFUL in 4s
 2 actionable tasks: 2 executed</pre>
@@ -216,7 +215,7 @@ BUILD SUCCESSFUL in 4s
 <div class="listingblock">
 <div class="title">Generated settings.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">rootProject.name = <span class="string"><span class="delimiter">'</span><span class="content">gradleRunner</span><span class="delimiter">'</span></span> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">rootProject.name = 'gradleRunner' <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -233,14 +232,14 @@ BUILD SUCCESSFUL in 4s
 <div class="listingblock">
 <div class="title">Generated build.gradle</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">plugins {
-    id <span class="string"><span class="delimiter">'</span><span class="content">groovy</span><span class="delimiter">'</span></span>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
+    id 'groovy'
 }
 
 dependencies {
-    compile <span class="string"><span class="delimiter">'</span><span class="content">org.codehaus.groovy:groovy-all:2.4.13</span><span class="delimiter">'</span></span> <i class="conum" data-value="2"></i><b>(2)</b>
+    compile 'org.codehaus.groovy:groovy-all:2.4.13' <i class="conum" data-value="2"></i><b>(2)</b>
 
-    testCompile <span class="string"><span class="delimiter">'</span><span class="content">org.spockframework:spock-core:1.0-groovy-2.4</span><span class="delimiter">'</span></span> <i class="conum" data-value="3"></i><b>(3)</b>
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4' <i class="conum" data-value="3"></i><b>(3)</b>
 }
 
 repositories {
@@ -277,9 +276,9 @@ repositories {
 <div class="listingblock">
 <div class="title">Generated src/main/groovy/Library.groovy</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">Library</span> {
-    <span class="type">boolean</span> someLibraryMethod() {
-        <span class="predefined-constant">true</span>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">class Library {
+    boolean someLibraryMethod() {
+        true
     }
 }</code></pre>
 </div>
@@ -290,18 +289,18 @@ repositories {
 <div class="listingblock">
 <div class="title">Generated  src/test/groovy/LibraryTest.groovy</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">spock.lang.Specification</span>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">import spock.lang.Specification
 
-<span class="type">class</span> <span class="class">LibraryTest</span> <span class="directive">extends</span> Specification {
-    <span class="keyword">def</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">someLibraryMethod returns true</span><span class="delimiter">&quot;</span></span>() {
-        <span class="key">setup</span>:
-        <span class="keyword">def</span> lib = <span class="keyword">new</span> Library()
+class LibraryTest extends Specification {
+    def "someLibraryMethod returns true"() {
+        setup:
+        def lib = new Library()
 
-        <span class="key">when</span>:
-        <span class="keyword">def</span> result = lib.someLibraryMethod()
+        when:
+        def result = lib.someLibraryMethod()
 
-        <span class="key">then</span>:
-        result == <span class="predefined-constant">true</span>
+        then:
+        result == true
     }
 }</code></pre>
 </div>
@@ -320,21 +319,27 @@ repositories {
 <div class="listingblock">
 <div class="content">
 <pre>$ ./gradlew build
-:compileJava NO-SOURCE
-:compileGroovy
-:processResources NO-SOURCE
-:classes
-:jar
-:assemble
-:compileTestJava NO-SOURCE
-:compileTestGroovy
-:processTestResources NO-SOURCE
-:testClasses
-:test
-:check
-:build
+&gt; Task :compileJava NO-SOURCE
 
-BUILD SUCCESSFUL in 8s
+&gt; Task :compileGroovy
+Picked up _JAVA_OPTIONS: -Xmx2048m -Xms512m
+
+&gt; Task :processResources NO-SOURCE
+&gt; Task :classes
+&gt; Task :jar
+&gt; Task :assemble
+&gt; Task :compileTestJava NO-SOURCE
+&gt; Task :compileTestGroovy
+&gt; Task :processTestResources NO-SOURCE
+&gt; Task :testClasses
+
+&gt; Task :test
+Picked up _JAVA_OPTIONS: -Xmx2048m -Xms512m
+
+&gt; Task :check
+&gt; Task :build
+
+BUILD SUCCESSFUL in 10s
 4 actionable tasks: 4 executed</pre>
 </div>
 </div>
@@ -381,11 +386,11 @@ The first time you run the wrapper script, <code>gradlew</code>, there may be a 
 <div class="listingblock">
 <div class="title">src/main/groovy/Library.groovy</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="comment">/** This Groovy source file was generated by the Gradle 'init' task.
- */</span>
-<span class="type">class</span> <span class="class">Library</span> {
-    <span class="type">boolean</span> someLibraryMethod() {
-        <span class="predefined-constant">true</span>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">/** This Groovy source file was generated by the Gradle 'init' task.
+ */
+class Library {
+    boolean someLibraryMethod() {
+        true
     }
 }</code></pre>
 </div>
@@ -396,14 +401,18 @@ The first time you run the wrapper script, <code>gradlew</code>, there may be a 
 <div class="listingblock">
 <div class="content">
 <pre>$ ./gradlew groovydoc
-:compileJava NO-SOURCE
-:compileGroovy
-:processResources NO-SOURCE
-:classes
-:groovydoc
+&gt; Task :compileJava NO-SOURCE
+
+&gt; Task :compileGroovy
+Picked up _JAVA_OPTIONS: -Xmx2048m -Xms512m
+
+&gt; Task :processResources NO-SOURCE
+&gt; Task :classes
+
+&gt; Task :groovydoc
 [ant:groovydoc] /home/travis/build/gradle-guides/building-groovy-libraries/build/runners/gradleRunner/build/tmp/groovydoc contains source files in the default package, you must specify them as source files not packages.
 
-BUILD SUCCESSFUL in 5s
+BUILD SUCCESSFUL in 6s
 2 actionable tasks: 2 executed</pre>
 </div>
 </div>
@@ -442,10 +451,10 @@ BUILD SUCCESSFUL in 5s
 <div class="ulist">
 <ul>
 <li>
-<p>Read about the <a href="https://docs.gradle.org/4.6/userguide/groovy_plugin.html">Groovy Plugin</a></p>
+<p>Read about the <a href="https://docs.gradle.org/4.7/userguide/groovy_plugin.html">Groovy Plugin</a></p>
 </li>
 <li>
-<p>Get to know the configurations for the <a href="https://docs.gradle.org/4.6/dsl/org.gradle.api.tasks.compile.GroovyCompile.html">GroovyCompile</a> and <a href="https://docs.gradle.org/4.6/dsl/org.gradle.api.tasks.javadoc.Groovydoc.html">Groovydoc</a> task types.</p>
+<p>Get to know the configurations for the <a href="https://docs.gradle.org/4.7/dsl/org.gradle.api.tasks.compile.GroovyCompile.html">GroovyCompile</a> and <a href="https://docs.gradle.org/4.7/dsl/org.gradle.api.tasks.javadoc.Groovydoc.html">Groovydoc</a> task types.</p>
 </li>
 </ul>
 </div>
@@ -460,6 +469,9 @@ BUILD SUCCESSFUL in 5s
 </div>
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+<script>prettyPrint()</script>
 <footer class="site-layout__footer site-footer" itemscope="itemscope" itemtype="https://schema.org/WPFooter">
     <nav class="site-footer__navigation" itemtype="https://schema.org/SiteNavigationElement">
         <section class="site-footer__links">
