@@ -1,0 +1,19 @@
+├── build.gradle.kts
+├── gradle
+│   └── wrapper // <1>
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── gradlew
+├── gradlew.bat
+├── settings.gradle.kts
+└── src
+    ├── main
+    │   └── groovy // <2>
+    │       └── jvm
+    │           └── library
+    │               └── Library.groovy
+    └── test
+        └── groovy // <3>
+            └── jvm
+                └── library
+                    └── LibraryTest.groovy
