@@ -46,6 +46,36 @@ gradleRunner {
 
     step 'docOutput', cleanBuildOutput.curry('docs')
 
+    step 'filesAltered', { info ->
+        copy {
+            from workingDir
+            into info.reportDir
+
+            include 'build.gradle'
+
+            filesMatching (['build.gradle']) {
+                filter { line ->
+                    if (line =~ /^(\/\*)|(\s*\*)|(\/\/)/) {
+                        null
+                    } else {
+                        line
+                    }
+                }
+            }
+
+            filesMatching (['build.gradle']) {
+                filter { line ->
+                    if (line=~/\s*compile.+groovy-all/) {
+                        line.replace("compile", "compileOnly") +
+                        "\n" + line.replace("compile", "testCompile")
+                    } else {
+                        line
+                    }
+                }
+            }
+        }
+    }
+
     step 'files', { info ->
         copy {
             from workingDir

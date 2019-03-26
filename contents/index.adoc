@@ -67,6 +67,16 @@ include::{gradle-outdir}/files/build.gradle[]
 
 The build file adds the `groovy` plugin. This is an extension of the `java` plugin and adds additional tasks for compiling Groovy source code. It also allows for joint compilation of Groovy and Java files if found in the appropriate `groovy` source folders.
 
+[NOTE]
+====
+It is assumed that the consumer of the library will transitively want the Groovy jars on the classpath. For libraries that will be consumed in contexts where Groovy will already be on the classpath, you can consider altering your dependency scopes as follows:
+[source,groovy]
+----
+include::{gradle-outdir}/filesAltered/build.gradle[]
+----
+Alternatively, you may wish to document to your library users that they may need to exclude transitive dependencies or specifically exclude the Groovy jar to avoid having two (potentially conflicting) versions of Groovy on the classpath.
+====
+
 The file `src/main/groovy/Library.groovy` is shown here:
 
 .Generated src/main/groovy/Library.groovy
